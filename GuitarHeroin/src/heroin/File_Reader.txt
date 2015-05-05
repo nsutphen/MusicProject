@@ -1,26 +1,33 @@
 package heroin;
 import java.io.*;
+import java.util.ArrayList;
 public class File_Reader  {
 
 	String file;
 	String line = null;
-	String total=null;
-	public static void main(String[] args)
-	{
-		File_Reader sad = new File_Reader("src/heroin/myTestFile.txt");
-	}
+	String total= " ";
+	ArrayList<String> array;
 	public File_Reader(String fileName) {
+		array = new ArrayList<String>();
 		readFile(fileName);
+		total+=" ";
 		toArray();
 		
 	}
 	public void toArray()
 	{
 		int start=0;
-		int space=0;
-		while(i<total.length())
+		for(int i = 0; i<total.length(); i++)
 		{
-			
+			if(total.charAt(i)==' ' && i!=0)
+			{
+				array.add(total.substring(start+1,i));
+				start=i;
+			}
+		}
+		for(int j=0; j< array.size(); j++)
+		{
+			System.out.println(array.get(j));
 		}
 	}
 	public void readFile(String fileName)
