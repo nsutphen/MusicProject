@@ -25,10 +25,6 @@ public class File_Reader  {
 				start=i;
 			}
 		}
-		for(int j=0; j< array.size(); j++)
-		{
-			System.out.println(array.get(j));
-		}
 	}
 	public void readFile(String fileName)
 	{
