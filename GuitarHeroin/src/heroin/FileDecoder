@@ -1,0 +1,20 @@
+public class fileDecoder
+{
+
+public static void main(String[] args)
+{
+
+
+
+
+
+}
+private void play()
+{
+
+
+(Math.power(2, (n-49)/12)*440);
+
+}
+
+}
