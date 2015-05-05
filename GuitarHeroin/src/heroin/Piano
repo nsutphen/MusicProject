@@ -1,0 +1,43 @@
+public class piano
+{
+
+Guitarstring int[] keyboard();
+//** 
+* make a piano
+*/
+
+public piano()
+{
+keyboard = new Guitarstring[88];
+for (int i = 0; i < 88(); i++) {
+keys[i] = new Guitarstring((Math.power(2, (n-49)/12)*440));
+}
+
+}
+public static void main(String[] args)
+{
+
+}
+
+private void play(int key)
+{
+if(key < keyboard.length())
+if (StdDraw.hasNextKeyTyped()) {
+keyboard[key].pluck();
+
+}
+double sample = 0.5;
+            for (int i = 0; i < keyboard.length; i++) {
+                double original = sample;
+                sample = original + keyboard[i].sample();
+            }
+            StdAudio.play(sample);
+            for (int i = 0; i < 37; i++) {
+                keyboard[i].tic();
+            }
+
+
+
+}
+
+}
