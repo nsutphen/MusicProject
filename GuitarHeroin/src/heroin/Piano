@@ -19,25 +19,43 @@ public static void main(String[] args)
 
 }
 
-private void play(int key)
-{
-if(key < keyboard.length())
-if (StdDraw.hasNextKeyTyped()) {
-keyboard[key].pluck();
-
-}
-double sample = 0.5;
-            for (int i = 0; i < keyboard.length; i++) {
-                double original = sample;
-                sample = original + keyboard[i].sample();
+private static void play(String notes) {
+        int notebeat = 0;
+        if (notes.contains("c")) {
+            String temp = notes;
+            int[] chords = new int[notes.length() / 3];
+            int count = 0;
+            while (temp.contains("c")) {
+                int i = Integer.parseInt(temp.substring(0, temp.indexOf("c") - 1));
+                chords[count] = i;
+                temp = temp.substring(temp.indexOf("c"));
+                count++;
             }
-            StdAudio.play(sample);
-            for (int i = 0; i < 37; i++) {
-                keyboard[i].tic();
+            int i = Integer.parseInt(temp.substring(0, temp.indexOf("b") - 1));
+            chords[count] = i;
+            beat = Integer.parseInt(temp.substring(temp.indexOf("b")));
+        } else {
+            int[] chords = new int[1];
+            chords[0] = Integer.parseInt(notes.substring(0, notes.indexOf("b") - 1));
+        }
+
+        for (int key : chords) {
+            if (key < 88) {
+                if (StdDraw.hasNextKeyTyped()) {
+                    keyboard[key].pluck();
+                }
+
+                double sample = 0.5;
+                for (int i = 0; i < keyboard.length; i++) {
+                    double original = sample;
+                    sample = original + keyboard[i].sample();
+                }
+                StdAudio.play(sample);
+                for (int i = 0; i < 37; i++) {
+                    keyboard[i].tic();
+                }
             }
-
-
-
-}
+        }
+    }
 
 }
