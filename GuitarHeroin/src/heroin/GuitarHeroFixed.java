@@ -15,59 +15,49 @@ import java.util.ArrayList;
 
 public class GuitarHeroFixed {
 
-    public static void main(String[] args) {
-
-	     ArrayList<GuitarString> buff = new ArrayList<GuitarString>();
-		 for(int i=0; i<88; i++)
-		 {
-			double frequency =  (440*Math.pow(2, (i-49)/12));
-			 buff.add(new GuitarString(frequency));
-		 }
+    public GuitarString[] keyboard;
+    public Piano piano;
+    public GuitarHeroFixed(Piano p)
+    {
+        piano = p;
+    }
+    public void run() {
+	     keyboard = new GuitarString[89];
+        for (int i = 1; i <= 88; i++) {
+            keyboard[i] = new GuitarString((Math.pow(2, (i - 49) / 12) * 440));
+        }
 
 		 int magicBox=0;
 		 final int beat = 10500;
-//		 int c = piano.indexOf('p');
+                 int indexKeyboard = 0;
         // the main input loop
         while (true) {
         	char key;
             // check if the user has typed a key, and, if so, process it
+        	
         	magicBox++;
-            if (StdDraw.hasNextKeyTyped()) {
+            if (piano.nextBeat(indexKeyboard)==magicBox) {
  
-                // the user types this character
-                key = StdDraw.nextKeyTyped();
-
-                // pluck the corresponding string
-                
-                /*Stuff that only went with the piano
-                 * Will fix
-                 * Soon
-                 */
-                
-               
-          /*     if(piano.indexOf(key)>=0)
-               {
-            	   buff.get(piano.indexOf(key)).pluck();
-            	   
-               }
+               keyboard[piano.nextNote(indexKeyboard)].pluck();
+               indexKeyboard++;
             }
 
             // compute the superposition of the samples
             double sample = 0.0;
-            for(int q = 0; q<piano.length(); q++)
+            for(int q = 0; q<keyboard.length; q++)
             {
-             sample += buff.get(q).sample();
+             sample += keyboard[q].sample();
             }
            // System.out.println(sample);
             // send the result to standard audio
             StdAudio.play(sample);
 
             // advance the simulation of each guitar string by one step
-            for(int w = 0; w<piano.length(); w++)
+            for(int w = 0; w<keyboard.length; w++)
             {
-            	buff.get(w).tic();
-            }*/
+            	keyboard[w].tic();
+            }
         }
     }
 
-}}
+}
