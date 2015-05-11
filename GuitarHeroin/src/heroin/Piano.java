@@ -13,15 +13,16 @@ public class Piano {
     public Piano(ArrayList<String> sheet)
     {
         beat = 0;
-        toPlay = new int[sheet.size()][sheet.size()];
+        toPlay = new int[sheet.size()][2];
          for(int x=0; x<sheet.size(); x++)
         {
-            toPlay[x][0] = Integer.parseInt(sheet.get(x).substring(0,sheet.get(x).indexOf("b")));
+        	 toPlay[x][0] = Integer.parseInt(sheet.get(x).substring(0,sheet.get(x).indexOf("b")).trim());
+
         }
          for(int k=0; k<sheet.size(); k++)
          {
              beat+= Integer.parseInt(sheet.get(k).substring(sheet.get(k).indexOf("b")+1),sheet.get(k).length());
-             toPlay[0][k]=beat*10500;
+             toPlay[k][1]=beat*10500;
          }
     }
     public int nextNote(int i)
@@ -30,12 +31,9 @@ public class Piano {
     }
     public int nextBeat(int i)
     {
-        return toPlay[i][i];
+        return toPlay[i][1];
     }
-    public static void main(String[] args) {
-     //   Piano p = new Piano();
-      //  p.play("50b1");
-    }
+ 
     
    /* public static void play(String notes) {
         int notebeat = 0;

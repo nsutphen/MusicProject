@@ -23,8 +23,9 @@ public class GuitarHeroFixed {
     }
     public void run() {
 	     keyboard = new GuitarString[89];
-        for (int i = 1; i <= 88; i++) {
+        for (int i = 0; i <89; i++) {
             keyboard[i] = new GuitarString((Math.pow(2, (i - 49) / 12) * 440));
+            System.out.println(keyboard[i].sample());
         }
 
 		 int magicBox=0;
@@ -46,7 +47,7 @@ public class GuitarHeroFixed {
             double sample = 0.0;
             for(int q = 0; q<keyboard.length; q++)
             {
-             sample += keyboard[q].sample();
+            sample += keyboard[q].sample();
             }
            // System.out.println(sample);
             // send the result to standard audio

@@ -20,7 +20,7 @@ public class Simulator {
     public static void main(String[] args)
     {
         Scanner scan = new Scanner(System.in);
-        
+        array= new ArrayList<String>();
         System.out.println("Would you like to use 'filereader' or 'ownstring'?");
         String input=scan.next();
         if(input.equals("filereader"))
@@ -33,10 +33,12 @@ public class Simulator {
         else if(input.equals("ownstring"))
         {
             System.out.println("Please insert your string");
-            input = scan.next();
+            input = " ";
+            input += scan.next();
+            System.out.println("Make Array");
             makeArray(input);
         }
-        piano = new Piano(array);
+       piano = new Piano(array);
         guitar = new GuitarHeroFixed(piano);
         guitar.run();
         
@@ -44,14 +46,15 @@ public class Simulator {
     }
     public static void makeArray(String total)
     {
-        total+=" ";
+        total+="e";
         int start=0;
+        System.out.println("This method is happening " + total);
 		for(int i = 0; i<total.length(); i++)
 		{
-			if(total.charAt(i)==' ' && i!=0)
+			if(total.charAt(i)=='e' && i!=0 && i!=total.length()-1)
 			{
-				array.add(total.substring(start+1,i));
-				start=i;
+				array.add(total.substring(start,i));
+				start=i+1;
 			}
 		}
     }
